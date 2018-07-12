@@ -35,8 +35,8 @@ parser.set_defaults(operation = serializeDb)
 # Only allow *either* `--ratings` *or* `--stimuli`, not both
 actionGroup = parser.add_mutually_exclusive_group()
 # Change the `operation` pointer based on the presence of a `--ratings` or `--stimuli` flag
-actionGroup.add_argument("--ratings", action = "store_const", const = serializeRatings, dest = "operation", help = "serializes ratings data")
-actionGroup.add_argument("--stimuli", action = "store_const", const = serializeStimuli, dest = "operation", help = "serializes stimuli data")
+actionGroup.add_argument("--ratings", action = "store_const", const = serializeRatings, dest = "operation", help = "serialize ratings data")
+actionGroup.add_argument("--stimuli", action = "store_const", const = serializeStimuli, dest = "operation", help = "serialize stimuli data")
 
 # Kick off the parser
 args = parser.parse_args()
