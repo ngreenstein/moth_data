@@ -5,7 +5,8 @@ from mysql.connector import errorcode
 
 config = {
 	"db_user": "moth_radio",
-	"db_password": "password" # DON'T COMMIT PASSWORDS
+	"db_password": "password", # DON'T COMMIT PASSWORDS
+	"db_database": "moth_radio"
 }
 
 # Private Variables
@@ -21,7 +22,7 @@ def db():
 		db = mysql.connector.connect(	user = config["db_user"],
 										password = config["db_password"],
 										host = "localhost",
-										database = "moth_radio")
+										database = config["database"])
 		_db = db
 		return _db
 	except mysql.connector.Error as error:
