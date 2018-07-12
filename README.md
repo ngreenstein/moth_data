@@ -27,16 +27,25 @@
 
 ### serialize
 
-usage: `serialize.py [-h] [--ratings | --stimuli] outfile`
+usage: `$ python -m pilot.serialize [-h] [--ratings | --stimuli] outfile`
 
 Serializes moth pilot data. Generates a SQL file representing the entire database contents by default, or more focused reports on either ratings or stimuli if requested.
 
-positional arguments:
+Positional arguments:
 
 - `outfile`: The destination file. Should be .sql for the entire database (default), and .csv for ratings or stimuli reports (see below).
 
-optional arguments:
+Optional arguments:
 
 -   `-h, --help`: show this help message and exit
 -   `--ratings`: serialize ratings data
 -   `--stimuli`: serialize stimuli data
+
+Examples:
+
+- Serialize the entire database:  
+	`$ python -m pilot.serialize backup.sql`
+- Serialize ratings data:  
+	`$ python -m pilot.serialize --ratings ratings.csv`
+- Serialize stimuli data:
+	`$ python -m pilot.serialize --stimuli stimuli.csv`
