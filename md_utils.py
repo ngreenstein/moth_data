@@ -22,7 +22,7 @@ def db():
 		db = mysql.connector.connect(	user = config["db_user"],
 										password = config["db_password"],
 										host = "localhost",
-										database = config["database"])
+										database = config["db_database"])
 		_db = db
 		return _db
 	except mysql.connector.Error as error:
