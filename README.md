@@ -3,12 +3,19 @@
 ## Setup
 
 1. `$ pip install mysql-connector-python`
+1. Add database credentials to `md_utils`
 
-## General
+## Development
 
 - To run something specific: from the `moth_data` folder,  
+	```$ python -m script
+	```  
+	Example:  
+	```$ python -m serialize
+	```   
+	In a submodule: from the `moth_data` folder,  
 	```
-	$ python -m subfolder.file
+	$ python -m submodule.script
 	```  
 	Example:  
 	```
@@ -23,29 +30,51 @@
 	cursor.close()
 	```
 
-## Pilot
+## Modules
 
-### serialize
+### (main)
 
-usage: `$ python -m pilot.serialize [-h] [--ratings | --stimuli] outfile`
+#### serialize
 
-Serializes moth pilot data. Generates a SQL file representing the entire database contents by default, or more focused reports on either ratings or stimuli if requested.
+<pre>
+usage: serialize.py [-h] outfile
 
-Positional arguments:
+Serializes moth data. Generates a SQL file representing the entire database
+contents.
 
-- `outfile`: The destination file. Should be .sql for the entire database (default), and .csv for ratings or stimuli reports (see below).
+positional arguments:
+  outfile     The destination file. Should be writeable and of type `.sql`.
 
-Optional arguments:
+optional arguments:
+  -h, --help  show this help message and exit
+</pre>
 
--   `-h, --help`: show this help message and exit
--   `--ratings`: serialize ratings data
--   `--stimuli`: serialize stimuli data
+Example:
 
-Examples:
+```
+$ python -m serialize backup.sql
+```
 
-- Serialize the entire database:  
-	`$ python -m pilot.serialize backup.sql`
-- Serialize ratings data:  
-	`$ python -m pilot.serialize --ratings ratings.csv`
-- Serialize stimuli data:
-	`$ python -m pilot.serialize --stimuli stimuli.csv`
+### pilot
+
+#### pilot.serialize
+
+<pre>
+usage: serialize.py [-h] (--ratings | --stimuli) outfile
+
+Serializes moth pilot data. Generates a CSV file representing either ratings or stimuli.
+
+positional arguments:
+  outfile     The destination file. Should be writeable and of type `.csv`.
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --ratings   serialize ratings data
+  --stimuli   serialize stimuli data
+</pre>
+
+Example:
+
+```
+$ python -m pilot.serialize --ratings backup.csv
+```
