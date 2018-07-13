@@ -37,22 +37,49 @@
 #### serialize
 
 <pre>
-usage: serialize.py [-h] outfile
+usage: serialize.py [-h] [--overwrite] outfile
 
 Serializes moth data. Generates a SQL file representing the entire database
 contents.
 
 positional arguments:
-  outfile     The destination file. Should be writeable and of type `.sql`.
+  outfile      The destination file. Should be writeable and of type `.sql`.
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help   show this help message and exit
+  --overwrite  Whether to overwrite an existing file. Defaults to no.
 </pre>
 
 Example:
 
 ```
 $ python -m serialize backup.sql
+```
+
+#### replace
+
+<pre>
+usage: replace.py [-h] [--backup BACKUP] [--overwrite] infile
+
+Replaces the moth database from a `.sql` file created with the `serialize`
+script. Backs up the existing database first.
+
+positional arguments:
+  infile           The source file. Should be readable and of type `.sql`.
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --backup BACKUP  The destination for a backup of the existing database.
+				   Defaults to `backups/current_date.sql`. Should be writeable
+				   and of type `.sql`.
+  --overwrite      Whether to overwrite an existing file while backing up.
+				   Defaults to no.
+</pre>
+
+Example:
+
+```
+$ python -m replace newDb.sql --backup backups/oldDb.sql --overwrite
 ```
 
 ### pilot
